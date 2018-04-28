@@ -6,9 +6,10 @@ const morgan = require('morgan');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // //DB setup
-mongoose.connect('mongodb://localhost:27017/auth');  
+mongoose.connect('mongodb://mikjail:password@ds115579.mlab.com:15579/auth');  
 
 var db = mongoose.connection;
  
@@ -20,6 +21,7 @@ db.once('open', function() {
 
 // App Setup
 app.use(morgan('combined'));
+app.use(cors());
 app.use(bodyParser.json({ type: '*/*'}));
 router(app);
 
